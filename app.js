@@ -36,13 +36,16 @@ app.post('/webhook', (req, res) => {
   console.log('session: ', agent.session);
 
   //Function Location
-  function welcome(agent) {
+
+  function BMI(agent) {
     agent.add('Welcome to Thailand.');
+
+
   }
 
   // Run the proper function handler based on the matched Dialogflow intent name
   let intentMap = new Map();
-  intentMap.set('Location', welcome);  // "Location" is once Intent Name of Dialogflow Agent
+  intentMap.set('BMI - custom - yes', BMI);
   agent.handleRequest(intentMap);
 });
 
