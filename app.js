@@ -36,17 +36,24 @@ app.post('/webhook', (req, res) => {
   console.log('session: ', agent.session);
 
   //Function Location
-
+  function welcome(agent) {
+    agent.add("Welcome to my agent!");
+  }
+ 
+  function fallback(agent) {
+    agent.add("I didn't understand");
+    agent.add("I'm sorry, can you try again?");
+  }
+  
   function BMI(agent) {
-    let weight = request.body.queryResult.parameters.weight;
-    let height = request.body.queryResult.parameters.height / 100;
-    let bmi = (weight / (height * height)).toFixed(2);
-    agent.add(bmi);
+    agent.add('Welcome to Thailand.');
 
   }
 
   // Run the proper function handler based on the matched Dialogflow intent name
   let intentMap = new Map();
+  intentMap.set('Default Welcome Intent', welcome);
+  intentMap.set('Default Fallback Intent', fallback);
   intentMap.set('BMI - custom - yes', BMI);
   agent.handleRequest(intentMap);
 });
