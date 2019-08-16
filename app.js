@@ -50,9 +50,7 @@ app.post('/webhook',express.json(), (req, res) => {
         let weight = req.body.queryResult.parameters.weight;
         // const weight = agent.parameters['weight'];
   
-        let height = request.body.queryResult.parameters.height / 100;
-        let bmi = (weight / (height * height)).toFixed(2);
-        agent.add(bmi);
+        agent.add("ํYoure weight:"+weight);
 
       }
     
