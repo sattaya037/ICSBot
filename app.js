@@ -22,8 +22,6 @@ app.post('/webhook', (req, res) => {
   console.log('POST: /');
   console.log('Body: ',req.body);
   //Create an instance
-  exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
-
     const agent = new WebhookClient({
       request: req,
       response: res
@@ -62,7 +60,7 @@ app.post('/webhook', (req, res) => {
     intentMap.set('Default Fallback Intent', fallback);
     intentMap.set('BMI - custom - yes', BMI);
     agent.handleRequest(intentMap);
-  });
+ 
 });
 
 app.listen(port, () => {
