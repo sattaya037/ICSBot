@@ -23,7 +23,7 @@ app.post('/webhook',express.json(), (req, res) => {
   console.log('POST: /');
   console.log('Body: ',req.body);
   console.log('headers: ',req.headers);
-  exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
+  exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => {
       //Create an instance
       const agent = new WebhookClient({
         request: req,
