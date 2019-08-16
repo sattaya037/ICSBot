@@ -48,7 +48,8 @@ app.post('/webhook',express.json(), (req, res) => {
       }
       
       function BMI(agent) {
-        let weight = agent.parameters.weight;
+        // let weight = agent.parameters.weight;
+        let weight = req.body.queryResult.parameters.weight;
         console.log(weight);
         // const weight = agent.parameters['weight'];
         agent.add(weight);
