@@ -46,8 +46,10 @@ app.post('/webhook', (req, res) => {
     }
     
     function BMI(agent) {
-      // let weight = request.body.queryResult.parameters.weight;
-      const weight = agent.parameters['weight'];
+      let weight = request.body.queryResult.parameters.weight;
+      console.log('Body: ',req.body);
+
+      // const weight = agent.parameters['weight'];
       console.log(weight);
   
       // let height = request.body.queryResult.parameters.height / 100;
