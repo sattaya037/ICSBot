@@ -48,13 +48,12 @@ app.post('/webhook',express.json(), (req, res) => {
       function BMI(agent) {
         // let weight = agent.parameters.weight;
         let weight = req.body.queryResult.parameters.weight;
-        console.log(weight);
         // const weight = agent.parameters['weight'];
-        agent.add(weight);
   
-        // let height = request.body.queryResult.parameters.height / 100;
-        // let bmi = (weight / (height * height)).toFixed(2);
-    
+        let height = request.body.queryResult.parameters.height / 100;
+        let bmi = (weight / (height * height)).toFixed(2);
+        agent.add(bmi);
+
       }
     
       // Run the proper function handler based on the matched Dialogflow intent name
