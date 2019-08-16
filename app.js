@@ -46,7 +46,10 @@ app.post('/webhook', (req, res) => {
   }
   
   function BMI(agent) {
-    agent.add('Welcome to Thailand.');
+    let weight = request.body.queryResult.parameters.weight;
+    let height = request.body.queryResult.parameters.height / 100;
+    let bmi = (weight / (height * height)).toFixed(2);
+    agent.add(bmi);
 
   }
 
