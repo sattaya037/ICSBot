@@ -20,7 +20,8 @@ app.get('/', (req, res) => {
 
 app.post('/webhook',express.json(), (req, res) => {
   console.log('POST: /');
-  console.log('Body: ',req.body);
+  console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers));
+  console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
   //Create an instance
 
     const agent = new WebhookClient({
