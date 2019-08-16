@@ -62,23 +62,14 @@ app.post('/webhook',express.json(), (req, res) => {
         const request = require('sync-request'),
         user = "JIRASIT.GO",
         password = "ICS@100";
-        const odata = request('GET', 'http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet?$format=json', {
+        const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet('00000001')?$format=json", {
           headers: {
               "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
           },
       });
         var sapRespond = JSON.parse(odata.getBody());
-        for (let i = 0; i < sapRespond.d.results.length; i++) {
-          answer = {
-              type: 'text',
-              text: sapRespond.d.results[i].Firstname.concat(" ")
-                  .concat(sapRespond.d.results[i].Lastname).concat(" ")
-                  .concat(sapRespond.d.results[i].Tel).concat(" ")
-                  .concat(sapRespond.d.results[i].Email).concat(" ")
-                  .concat(sapRespond.d.results[i].Position)
-          }
-      }
-        console.log('sap:'+answer);
+        var  test = sapRespond.d.results.Firstname.concat(" ")
+        console.log('sap:'+test);
         agent.add("SAP");
 
       }
