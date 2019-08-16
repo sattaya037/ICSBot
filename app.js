@@ -22,6 +22,7 @@ app.post('/webhook', (req, res) => {
   console.log('POST: /');
   console.log('Body: ',req.body);
   //Create an instance
+
     const agent = new WebhookClient({
       request: req,
       response: res
@@ -45,7 +46,8 @@ app.post('/webhook', (req, res) => {
     }
     
     function BMI(agent) {
-      let weight = request.body.queryResult.parameters.weight;
+      // let weight = request.body.queryResult.parameters.weight;
+      const weight = agent.parameters['weight'];
       console.log(weight);
   
       // let height = request.body.queryResult.parameters.height / 100;
