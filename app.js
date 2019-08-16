@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
   });
 })
 
-app.post('/webhook', (req, res) => {
+app.post('/webhook',express.json(), (req, res) => {
   console.log('POST: /');
   console.log('Body: ',req.body);
   //Create an instance
@@ -47,7 +47,6 @@ app.post('/webhook', (req, res) => {
     
     function BMI(agent) {
       let weight = agent.parameters.weight;
-      console.log('Body: ',req.body);
 
       // const weight = agent.parameters['weight'];
       console.log(weight);
