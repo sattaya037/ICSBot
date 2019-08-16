@@ -27,6 +27,7 @@ app.post('/webhook',express.json(), (req, res) => {
       request: req,
       response: res
     });
+    
   
     //Test get value of WebhookClient
     console.log('agentVersion: ' + agent.agentVersion);
@@ -47,7 +48,7 @@ app.post('/webhook',express.json(), (req, res) => {
     
     function BMI(agent) {
       let weight = agent.parameters.weight;
-
+      console.log(weight);
       // const weight = agent.parameters['weight'];
       agent.add("Hello Webhook");
 
