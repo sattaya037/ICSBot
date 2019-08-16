@@ -68,8 +68,17 @@ app.post('/webhook',express.json(), (req, res) => {
           },
       });
         var sapRespond = JSON.parse(odata.getBody());
-
-        console.log('sap:'+sapRespond);
+        for (let i = 0; i < sapRespond.d.results.length; i++) {
+          answer = {
+              type: 'text',
+              text: sapRespond.d.results[i].Firstname.concat(" ")
+                  .concat(sapRespond.d.results[i].Lastname).concat(" ")
+                  .concat(sapRespond.d.results[i].Tel).concat(" ")
+                  .concat(sapRespond.d.results[i].Email).concat(" ")
+                  .concat(sapRespond.d.results[i].Position)
+          }
+      }
+        console.log('sap:'+answer);
         agent.add("SAP");
 
       }
