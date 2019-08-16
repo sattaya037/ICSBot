@@ -56,12 +56,22 @@ app.post('/webhook',express.json(), (req, res) => {
         agent.add("ํBMI:"+BMI);
 
       }
+
+      function SAP(agent) {
+        // let weight = agent.parameters.weight;
+    
+  
+        agent.add("SAP");
+
+      }
     
       // Run the proper function handler based on the matched Dialogflow intent name
       let intentMap = new Map();
       intentMap.set('Default Welcome Intent', welcome);
       intentMap.set('Default Fallback Intent', fallback);
       intentMap.set('BMI - custom - yes', BMI);
+      intentMap.set('SAP', SAP);
+
       agent.handleRequest(intentMap);
    
 
