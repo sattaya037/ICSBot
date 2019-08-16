@@ -8,8 +8,6 @@ const port = process.env.PORT || 4000;
 const {
   WebhookClient
 } = require('dialogflow-fulfillment');
-const functions = require('firebase-functions');
-
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 
