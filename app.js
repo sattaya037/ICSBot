@@ -68,8 +68,7 @@ app.post('/webhook',express.json(), (req, res) => {
           },
       });
         var sapRespond = JSON.parse(odata.getBody());
-        var fname = sapRespond.d.results.Firstname;
-        console.log('sap:'+fname);
+        console.log('sap:'+sapRespond);
         agent.add("SAP");
 
       }
