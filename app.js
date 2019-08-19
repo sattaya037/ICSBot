@@ -86,7 +86,7 @@ app.post('/webhook',express.json(), (req, res) => {
       intentMap.set('Default Welcome Intent', welcome);
       intentMap.set('Default Fallback Intent', fallback);
       intentMap.set('BMI - custom - yes', BMI);
-      intentMap.set('SAP', SAP);
+      intentMap.set('SAP - custom', SAP);
 
       agent.handleRequest(intentMap);
    
