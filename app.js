@@ -58,7 +58,7 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function SAP(agent) {
-        let fName = req.body.queryResult.parameters.person.name;
+        // let fName = req.body.queryResult.parameters.person.name;
         // let weight = agent.parameters.weight;
         const request = require('sync-request'),
         user = "JIRASIT.GO",
@@ -83,7 +83,7 @@ app.post('/webhook',express.json(), (req, res) => {
       intentMap.set('Default Welcome Intent', welcome);
       intentMap.set('Default Fallback Intent', fallback);
       intentMap.set('BMI - custom - yes', BMI);
-      intentMap.set('SAP - custom', SAP);
+      intentMap.set('SAP - employees', SAP);
 
       agent.handleRequest(intentMap);
    
