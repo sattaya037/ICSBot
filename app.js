@@ -58,8 +58,6 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function SAP(agent) {
-        // let fName = req.body.queryResult.parameters.person.name;
-        // let weight = agent.parameters.weight;
         const request = require('sync-request'),
         user = "JIRASIT.GO",
         password = "ICS@100";
@@ -72,11 +70,25 @@ app.post('/webhook',express.json(), (req, res) => {
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname;
               var lastname = sapRespond.d.results[i].Lastname;
-
               console.log(name);
-              agent.add(name+" "+lastname);
-
+              agent.add(name+" "+lastname);         
         } 
+      }
+      function SAPInfo(agent) {
+        let fName = req.body.queryResult.parameters.person.name;
+        console.log(fName);
+        const request = require('sync-request'),
+        user = "JIRASIT.GO",
+        password = "ICS@100";
+        const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet?$format=json", {
+          headers: {
+              "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
+          },
+      });
+        var sapRespond = JSON.parse(odata.getBody());
+        for (let i = 0; i < sapRespond.d.results.length; i++) {
+        } 
+        agent.add("Name:  "+fName);         
 
       }
     
@@ -86,6 +98,7 @@ app.post('/webhook',express.json(), (req, res) => {
       intentMap.set('Default Fallback Intent', fallback);
       intentMap.set('BMI - custom - yes', BMI);
       intentMap.set('SAP - employees', SAP);
+      intentMap.set('SAP - info', SAPInfo);
 
       agent.handleRequest(intentMap);
    
