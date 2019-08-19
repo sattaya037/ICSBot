@@ -71,7 +71,7 @@ app.post('/webhook',express.json(), (req, res) => {
         var sapRespond = JSON.parse(odata.getBody());
         console.log('sap:'+sapRespond);
 
-        agent.add("SAP");
+        agent.add("SAP"+sapRespond);
 
       }
     
