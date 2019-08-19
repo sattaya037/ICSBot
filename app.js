@@ -72,7 +72,7 @@ app.post('/webhook',express.json(), (req, res) => {
         console.log('sap:'+sapRespond);
         for (let i = 0; i < sapRespond.d.results.length; i++) {
          }
-         var a =sapRespond.d.results.length;
+         var a =sapRespond.d.results.Firstname;
       console.log(a)
       agent.add("SAP"+a);
 
