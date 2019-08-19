@@ -3,10 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const port = process.env.PORT || 4000;
-const OData = require('c4codata');
-// odata.org sample odata service
-const TestServiceURL = "https://services.odata.org/V2/Northwind/Northwind.svc/$metadata"
-const odata = new OData(TestServiceURL)
+
 // Import the appropriate class
 const {
   WebhookClient
@@ -61,13 +58,7 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function SAP(agent) {
-        const filter = OData.newFilter().field("Phone").eqString("030-0074321");
-      
-        const result = await odata.newRequest({ // ODataRequest object
-          collection: "Customers", // collection name
-          params: OData.newParam().filter(filter) // odata param
-        })
-        console.log(result);
+   
         // let weight = agent.parameters.weight;
       //   const request = require('sync-request'),
       //   user = "JIRASIT.GO",
