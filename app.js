@@ -3,8 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const port = process.env.PORT || 4000;
-import { OData } from "c4codata"
-
+const OData = require('c4codata');
 // odata.org sample odata service
 const TestServiceURL = "https://services.odata.org/V2/Northwind/Northwind.svc/$metadata"
 const odata = new OData(TestServiceURL)
