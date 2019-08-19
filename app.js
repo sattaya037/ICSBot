@@ -74,8 +74,9 @@ app.post('/webhook',express.json(), (req, res) => {
               if (sapRespond.d.results[i].Firstname == fName) {
                 results.push(sapRespond.d.results[i]);
               }
+              agent.add("Name "+results);
+
         }
-        agent.add("Name "+results.Firstname);
 
       }
     
