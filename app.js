@@ -69,7 +69,7 @@ app.post('/webhook',express.json(), (req, res) => {
           },
       });
         var sapRespond = JSON.parse(odata.getBody());
-        var id =response.d.Firstname.concat(" ")
+        var id =response.d.Firstname;
         console.log('sap:'+id);
         console.log('sap:'+sapRespond);
 
