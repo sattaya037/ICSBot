@@ -70,7 +70,7 @@ app.post('/webhook',express.json(), (req, res) => {
           },
       });
         var sapRespond = JSON.parse(odata.getBody());
-        console.log('sap:'+sapRespond);
+        console.log('sap:'+"Dareth");
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname
               if(name == Fname){
