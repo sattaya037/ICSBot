@@ -74,7 +74,7 @@ app.post('/webhook',express.json(), (req, res) => {
               var lastname = sapRespond.d.results[i].Lastname;
 
               console.log(name);
-              agent.add(name+" "+Lastname);
+              agent.add(name+" "+lastname);
 
         } 
 
