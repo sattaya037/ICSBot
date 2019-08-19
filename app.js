@@ -71,13 +71,10 @@ app.post('/webhook',express.json(), (req, res) => {
         var sapRespond = JSON.parse(odata.getBody());
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname;
-              if (name == fName) {
-                return sapRespond.d.results[i].Firstname;
+              console.log(name);
+              agent.add("Name:"+name);
 
-              }
-
-        }
-        agent.add("Name "+sapRespond.d.results[i].Firstname);
+        } 
 
       }
     
