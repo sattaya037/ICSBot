@@ -69,13 +69,13 @@ app.post('/webhook',express.json(), (req, res) => {
           },
       });
         var sapRespond = JSON.parse(odata.getBody());
+        var results ="";
         for (let i = 0; i < sapRespond.d.results.length; i++) {
-              var name = sapRespond.d.results[i].Firstname;
-              if(name == fName){
-                agent.add("Name "+name+sapRespond.d.results[i].Lastname);
-
+              if (sapRespond.d.results[i].Firstname == fName) {
+                results.push(sapRespond.d.results[i].Firstname);
               }
         }
+        agent.add("Name "+results);
 
       }
     
