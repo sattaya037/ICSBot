@@ -58,7 +58,7 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function SAP(agent) {
-        let fName = req.body.queryResult.parameters.person;
+        let fName = req.body.queryResult.parameters.person.name;
           console.log(fName);
         // let weight = agent.parameters.weight;
         const request = require('sync-request'),
