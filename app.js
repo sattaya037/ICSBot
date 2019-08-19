@@ -72,13 +72,8 @@ app.post('/webhook',express.json(), (req, res) => {
         var sapRespond = JSON.parse(odata.getBody());
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname;
-              if(name == fName){
-                console.log(name)
-                var lastName =sapRespond.d.results[i].Lirstname;
-                agent.add("SAP"+name+"Last"+lastName);
-
-              }
          }
+         agent.add("SAP");
 
       }
     
