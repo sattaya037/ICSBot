@@ -73,9 +73,8 @@ app.post('/webhook',express.json(), (req, res) => {
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname;
               if (name == fName) {
-                results == sapRespond.d.results[i].Firstname;
-                console.log(results);
-                agent.add("Name "+results);
+                console.log(name);
+                agent.add("Name "+name);
 
               }
 
