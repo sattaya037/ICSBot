@@ -36,15 +36,6 @@ app.post('/webhook',express.json(), (req, res) => {
       // console.log('session: ', agent.session);
     
       //Function Location
-      function welcome(agent) {
-        agent.add("Welcome to my agent!");
-      }
-     
-      function fallback(agent) {
-        agent.add("I didn't understand");
-        agent.add("I'm sorry, can you try again?");
-      }
-      
       function BMI(agent) {
         // let weight = agent.parameters.weight;
         let weight = req.body.queryResult.parameters.weight;
@@ -75,16 +66,14 @@ app.post('/webhook',express.json(), (req, res) => {
         } 
       }
       function SAPInfo(agent) {
-        let fName = req.body.queryResult.parameters.person.name;
+        let fName =  req.body.queryResult.parameters.person;
         console.log(fName);
-        agent.add("Name:  "+fName);         
+        agent.add("Name:"+fName);         
 
       }
     
       // Run the proper function handler based on the matched Dialogflow intent name
       let intentMap = new Map();
-      intentMap.set('Default Welcome Intent', welcome);
-      intentMap.set('Default Fallback Intent', fallback);
       intentMap.set('BMI - custom - yes', BMI);
       intentMap.set('SAP - employees', SAP);
       intentMap.set('SAP - info', SAPInfo);
