@@ -58,8 +58,7 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function SAP(agent) {
-        let sapName = req.body.queryResult.parameters.person;
-        console.log(sapName);
+   
         // let weight = agent.parameters.weight;
         const request = require('sync-request'),
         user = "JIRASIT.GO",
@@ -73,10 +72,9 @@ app.post('/webhook',express.json(), (req, res) => {
         console.log('sap:'+sapRespond);
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname
-              if(name == sapName){
+              if(name == "Jirasit"){
                 console.log(name)
-                var Lastname = sapRespond.d.results[i].Lastname
-                agent.add("SAP"+Lastname);
+                agent.add("SAP"+name);
 
               }
          }
