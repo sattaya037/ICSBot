@@ -58,8 +58,7 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function SAP(agent) {
-        let  Fname = req.body.queryResult.parameters.person;
-        console.log(Fname);
+    
         // let weight = agent.parameters.weight;
         const request = require('sync-request'),
         user = "JIRASIT.GO",
@@ -70,10 +69,9 @@ app.post('/webhook',express.json(), (req, res) => {
           },
       });
         var sapRespond = JSON.parse(odata.getBody());
-        console.log('sap:'+"Dareth");
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname
-              if(name == Fname){
+              if(name == "Dareth"){
                 console.log(name)
                 agent.add("SAP"+name);
 
@@ -87,7 +85,7 @@ app.post('/webhook',express.json(), (req, res) => {
       intentMap.set('Default Welcome Intent', welcome);
       intentMap.set('Default Fallback Intent', fallback);
       intentMap.set('BMI - custom - yes', BMI);
-      intentMap.set('SAP - custom', SAP);
+      intentMap.set('SAP', SAP);
 
       agent.handleRequest(intentMap);
    
