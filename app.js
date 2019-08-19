@@ -74,9 +74,6 @@ app.post('/webhook',express.json(), (req, res) => {
               if(name == fName){
                 agent.add("Name "+name+sapRespond.d.results[i].Lastname);
 
-              }else{
-                agent.add("ไม่มีชื่อนี้ในระบบ");
-
               }
         }
 
