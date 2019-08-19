@@ -59,7 +59,6 @@ app.post('/webhook',express.json(), (req, res) => {
 
       function SAP(agent) {
         let fName = req.body.queryResult.parameters.person.name;
-          console.log(fName);
         // let weight = agent.parameters.weight;
         const request = require('sync-request'),
         user = "JIRASIT.GO",
@@ -72,8 +71,14 @@ app.post('/webhook',express.json(), (req, res) => {
         var sapRespond = JSON.parse(odata.getBody());
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname;
+              if(name == fName){
+                agent.add("Name "+name+sapRespond.d.results[i].Lastname);
+
+              }else{
+                agent.add("ไม่มีชื่อนี้ในระบบ");
+
+              }
         }
-         agent.add("SAP"+fName);
 
       }
     
