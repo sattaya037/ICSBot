@@ -63,18 +63,18 @@ app.post('/webhook',express.json(), (req, res) => {
         let fName = req.body.queryResult.parameters.person;
           console.log(fName);
         // let weight = agent.parameters.weight;
-        const request = require('sync-request'),
-        user = "JIRASIT.GO",
-        password = "ICS@100";
-        const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet?$format=json", {
-          headers: {
-              "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
-          },
-      });
-        var sapRespond = JSON.parse(odata.getBody());
-        for (let i = 0; i < sapRespond.d.results.length; i++) {
-              var name = sapRespond.d.results[i].Firstname;
-         }
+      //   const request = require('sync-request'),
+      //   user = "JIRASIT.GO",
+      //   password = "ICS@100";
+      //   const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet?$format=json", {
+      //     headers: {
+      //         "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
+      //     },
+      // });
+      //   var sapRespond = JSON.parse(odata.getBody());
+      //   for (let i = 0; i < sapRespond.d.results.length; i++) {
+      //         var name = sapRespond.d.results[i].Firstname;
+      //    }
          agent.add("Name"+fName);
 
       }
