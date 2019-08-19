@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+var request = require('request');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const port = process.env.PORT || 4000;
@@ -58,19 +59,33 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function SAP(agent) {
-   
-        // let weight = agent.parameters.weight;
-        const request = require('sync-request'),
-        user = "JIRASIT.GO",
-        password = "ICS@100";
-        const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet('00000001')?$format=json", {
-          headers: {
-              "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
-          },
-      });
-        var sapRespond = JSON.parse(odata.getBody());
-        var name =sapRespond.EmployeeID;
-        console.log('sap:'+name);
+       var url = "http://vmfioriics.ics-th.com:8000";
+       var user = "JIRASIT.GO";
+       var password = "ICS@100";
+       var csrfToken;
+       request({
+        url:url+"/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet('00000001')?$format=json",
+        headers:{
+          "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64'),
+          "Content-Type":"application/json",
+          "x-csrf-token":"Fetch"
+        }
+        }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {   
+            csrfToken = response.headers['x-csrf-token'];
+            console.log(csrfToken);
+            res.json(body);
+        }
+        });
+
+      //   const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet('00000001')?$format=json", {
+      //     headers: {
+      //         "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
+      //     },
+      // });
+      //   var sapRespond = JSON.parse(odata.getBody());
+      //   var name =sapRespond;
+      //   console.log('sap:'+name);
         agent.add("SAP");
 
       }
