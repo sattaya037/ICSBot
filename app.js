@@ -18,9 +18,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('/webhook',express.json(), (req, res) => {
-  console.log('POST: /');
-  console.log('Body: ',req.body);
-  console.log('headers: ',req.headers);
+  // console.log('POST: /');
+  // console.log('Body: ',req.body);
+  // console.log('headers: ',req.headers);
       //Create an instance
       const agent = new WebhookClient({
         request: req,
@@ -29,11 +29,11 @@ app.post('/webhook',express.json(), (req, res) => {
       
     
       //Test get value of WebhookClient
-      console.log('agentVersion: ' + agent.agentVersion);
-      console.log('intent: ' + agent.intent);
-      console.log('locale: ' + agent.locale);
-      console.log('query: ', agent.query);
-      console.log('session: ', agent.session);
+      // console.log('agentVersion: ' + agent.agentVersion);
+      // console.log('intent: ' + agent.intent);
+      // console.log('locale: ' + agent.locale);
+      // console.log('query: ', agent.query);
+      // console.log('session: ', agent.session);
     
       //Function Location
       function welcome(agent) {
@@ -60,16 +60,16 @@ app.post('/webhook',express.json(), (req, res) => {
       function SAP(agent) {
    
         // let weight = agent.parameters.weight;
-      //   const request = require('sync-request'),
-      //   user = "JIRASIT.GO",
-      //   password = "ICS@100";
-      //   const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet('00000001')?$format=json", {
-      //     headers: {
-      //         "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
-      //     },
-      // });
-      //   var sapRespond = JSON.parse(odata.getBody());
-      //   console.log('sap:'+sapRespond);
+        const request = require('sync-request'),
+        user = "JIRASIT.GO",
+        password = "ICS@100";
+        const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet('00000001')?$format=json", {
+          headers: {
+              "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
+          },
+      });
+        var sapRespond = JSON.parse(odata.getBody());
+        console.log('sap:'+sapRespond);
         agent.add("SAP");
 
       }
