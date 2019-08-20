@@ -59,7 +59,31 @@ app.post('/webhook',express.json(), (req, res) => {
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname;
               var lastname = sapRespond.d.results[i].Lastname;
-              agent.add(name+" "+lastname);         
+              const payloadJson = {
+                "type": "flex",
+                "altText": "Flex Message",
+                "contents": {
+                  "type": "bubble",
+                  "direction": "ltr",
+                  "header": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "button",
+                        "action": {
+                          "type": "message",
+                          "label": name+" "+lastname,
+                          "text": name+".i"
+
+                        }
+                      }
+                    ]
+                  }
+                }
+              };
+              let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
+              agent.add(payload);         
         } 
       }
 
