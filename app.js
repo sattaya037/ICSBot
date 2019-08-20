@@ -68,9 +68,55 @@ app.post('/webhook',express.json(), (req, res) => {
           for (let i = 0; i < sapRespond.d.results.length; i++) {
                if(sapRespond.d.results[i].Firstname == fName){
                 const payloadJson = {
-                  type: "sticker",
-                  packageId: 11538,
-                  stickerId: 51626513
+                  type: flex,
+                  altText: "Flex Message",
+                  contents: {
+                    type: "bubble",
+                    direction: "ltr",
+                    header: {
+                      type: "box",
+                      layout: "vertical",
+                      contents: [
+                        {
+                          type: "text",
+                          text: "Header",
+                          align: "center"
+                        }
+                      ]
+                    },
+                    hero: {
+                      type: "image",
+                      url: "https://developers.line.biz/assets/images/services/bot-designer-icon.png",
+                      size: "full",
+                      aspectRatio: "1.51:1",
+                      aspectMode: "fit"
+                    },
+                    body: {
+                      type: "box",
+                      layout: "vertical",
+                      contents: [
+                        {
+                          type: "text",
+                          text: "Body",
+                          align: "center"
+                        }
+                      ]
+                    },
+                    footer: {
+                      type: "box",
+                      layout: "horizontal",
+                      contents: [
+                        {
+                          type: "button",
+                          action: {
+                            type: "uri",
+                            label: "Button",
+                            uri: "https://linecorp.com"
+                          }
+                        }
+                      ]
+                    }
+                  }
                 };
                 let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
 
