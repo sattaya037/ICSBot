@@ -17,17 +17,6 @@ app.get('/', (req, res) => {
   });
 })
 
-const request = require('sync-request'),
-user = "JIRASIT.GO",
-password = "ICS@100";
-const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet?$format=json", {
-  headers: {
-      "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
-  },
-});
-const sapRespond = JSON.parse(odata.getBody());
-
-
 app.post('/webhook',express.json(), (req, res) => {
   // console.log('POST: /');
   // console.log('Body: ',req.body);
@@ -37,6 +26,16 @@ app.post('/webhook',express.json(), (req, res) => {
         request: req,
         response: res
       });
+      const request = require('sync-request'),
+      user = "JIRASIT.GO",
+      password = "ICS@100";
+      const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet?$format=json", {
+        headers: {
+            "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
+        },
+      });
+      var sapRespond = JSON.parse(odata.getBody());
+
       
     
       //Test get value of WebhookClient
@@ -56,16 +55,17 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function SAP(agent) {
-        var sapRespond = this.sapRespond;
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname;
               var lastname = sapRespond.d.results[i].Lastname;
               agent.add(name+" "+lastname);         
         } 
       }
+      
       function SAPInfo(agent) {
         let fName =  req.body.queryResult.parameters.person.name;
         console.log(fName);
+        
         agent.add("Name:"+fName);         
 
       }
