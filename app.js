@@ -17,6 +17,17 @@ app.get('/', (req, res) => {
   });
 })
 
+const request = require('sync-request'),
+user = "JIRASIT.GO",
+password = "ICS@100";
+const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet?$format=json", {
+  headers: {
+      "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
+  },
+});
+const sapRespond = JSON.parse(odata.getBody());
+
+
 app.post('/webhook',express.json(), (req, res) => {
   // console.log('POST: /');
   // console.log('Body: ',req.body);
@@ -37,27 +48,15 @@ app.post('/webhook',express.json(), (req, res) => {
     
       //Function Location
       function BMI(agent) {
-        // let weight = agent.parameters.weight;
         let weight = req.body.queryResult.parameters.weight;
         let height = req.body.queryResult.parameters.height;
-        let BMI = weight/(height/100*height/100) ;
-
-        // const weight = agent.parameters['weight'];
-  
+        let BMI = weight/(height/100*height/100) ;  
         agent.add("ํBMI:"+BMI);
 
       }
 
       function SAP(agent) {
-        const request = require('sync-request'),
-        user = "JIRASIT.GO",
-        password = "ICS@100";
-        const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet?$format=json", {
-          headers: {
-              "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
-          },
-      });
-        var sapRespond = JSON.parse(odata.getBody());
+        var sapRespond = this.sapRespond;
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname;
               var lastname = sapRespond.d.results[i].Lastname;
