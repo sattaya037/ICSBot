@@ -61,12 +61,16 @@ app.post('/webhook',express.json(), (req, res) => {
               agent.add(name+" "+lastname);         
         } 
       }
-      
+
       function SAPInfo(agent) {
         let fName =  req.body.queryResult.parameters.person.name;
         console.log(fName);
-        
-        agent.add("Name:"+fName);         
+          for (let i = 0; i < sapRespond.d.results.length; i++) {
+               if(sapRespond.d.results[i].Firstname == fName){
+                  agent.add("Name:"+sapRespond.d.results[i].Firstname);         
+                   break; 
+               }   
+        } 
 
       }
     
