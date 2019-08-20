@@ -98,28 +98,43 @@ app.post('/webhook',express.json(), (req, res) => {
                         {
                           "type": "text",
                           "text": sapRespond.d.results[i].Firstname+"  "+sapRespond.d.results[i].Lastname+"("+sapRespond.d.results[i].Nickname+")",
-                          "align": "center"
+                          "align": "center",
+                          "weight": "bold",
+                          "size": "lg"
                         },
                         {
-                          "type": "text",
-                          "text": "Tel:"+" "+sapRespond.d.results[i].Tel
+                          "type": "separator",
+                          "margin": "lg"
                         },
                         {
-                          "type": "text",
-                          "text": "Email:"+" "+sapRespond.d.results[i].Email
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "spacer"
+                            },
+                            {
+                              "type": "text",
+                              "text": "Tel:"+" "+sapRespond.d.results[i].Tel
+                            },
+                            {
+                              "type": "text",
+                              "text": "Email:"+" "+sapRespond.d.results[i].Email
+                            },
+                            {
+                              "type": "text",
+                              "text": "Birthdate:"+" "+sapRespond.d.results[i].Birthdate
+                            },
+                            {
+                              "type": "text",
+                              "text": "Position:"+" "+sapRespond.d.results[i].Position
+                            },
+                            {
+                              "type": "text",
+                              "text": "Line:"+" "+sapRespond.d.results[i].Line
+                            }
+                          ]
                         },
-                        {
-                          "type": "text",
-                          "text": "Birthdate:"+" "+sapRespond.d.results[i].Birthdate
-                        },
-                        {
-                          "type": "text",
-                          "text": "Position:"+" "+sapRespond.d.results[i].Position
-                        },
-                        {
-                          "type": "text",
-                          "text": "Line:"+" "+sapRespond.d.results[i].Line
-                        }
                       ]
                     }
                   }
