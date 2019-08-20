@@ -6,7 +6,7 @@ const port = process.env.PORT || 4000;
 
 // Import the appropriate class
 const {
-  WebhookClient
+  WebhookClient,Payload
 } = require('dialogflow-fulfillment');
 app.use(morgan('dev'))
 app.use(bodyParser.json())
@@ -67,13 +67,14 @@ app.post('/webhook',express.json(), (req, res) => {
         console.log(fName);
           for (let i = 0; i < sapRespond.d.results.length; i++) {
                if(sapRespond.d.results[i].Firstname == fName){
-                var message={
-                  line: {
-                    type: "text",
-                    text: sapRespond.d.results[i].Firstname
-                  }
+                const payloadJson = {
+                  type: "sticker",
+                  packageId: 11538,
+                  stickerId: 51626513
                 };
-                  agent.add(message);         
+                let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
+
+                  agent.add(payload);         
                    break; 
                }   
         } 
