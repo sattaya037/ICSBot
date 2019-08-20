@@ -65,7 +65,7 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function SAPInfo(agent) {
-        let fName =  req.body.queryResult.parameters.person.name;
+        let fName =  req.body.queryResult.parameters.Object;
         console.log(fName);
           // for (let i = 0; i < sapRespond.d.results.length; i++) {
           //      if(sapRespond.d.results[i].Firstname == fName){
