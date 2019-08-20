@@ -67,14 +67,12 @@ app.post('/webhook',express.json(), (req, res) => {
         console.log(fName);
           for (let i = 0; i < sapRespond.d.results.length; i++) {
                if(sapRespond.d.results[i].Firstname == fName){
-                
                 var message={
-                  "line": {
-                    "type": "text",
-                    "text": sapRespond.d.results[i].Firstname
+                  line: {
+                    type: "text",
+                    text: sapRespond.d.results[i].Firstname
                   }
                 };
-                
                   agent.add(message);         
                    break; 
                }   
