@@ -2,9 +2,10 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+
 const port = process.env.PORT || 4000;
 
-// Import the appropriate class
+ // Import the appropriate class
 const {
   WebhookClient,Payload
 } = require('dialogflow-fulfillment');
@@ -16,7 +17,7 @@ app.get('/', (req, res) => {
     success: true
   });
 })
-
+app.use('/image', express.static('image/ICS-Logo.png'))
 app.post('/webhook',express.json(), (req, res) => {
   // console.log('POST: /');
   // console.log('Body: ',req.body);
