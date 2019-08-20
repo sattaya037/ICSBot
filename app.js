@@ -73,9 +73,8 @@ app.post('/webhook',express.json(), (req, res) => {
                         "type": "button",
                         "action": {
                           "type": "message",
-                          "label": name+" "+lastname,
-                          "text": name+".i"
-
+                          "label": "Button",
+                          "text": "test"
                         }
                       }
                     ]
