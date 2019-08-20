@@ -87,7 +87,7 @@ app.post('/webhook',express.json(), (req, res) => {
                     },
                     "hero": {
                       "type": "image",
-                      "url": "https://developers.line.biz/assets/images/services/bot-designer-icon.png",
+                      "url": "https://ics-bot-bot.herokuapp.com/image",
                       "size": "full",
                       "aspectRatio": "1.51:1",
                       "aspectMode": "fit"
