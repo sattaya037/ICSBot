@@ -149,7 +149,7 @@ app.post('/webhook',express.json(), (req, res) => {
           //       };
                 // let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
 
-                  agent.add(nameCapitalized+" "+firstname+""+P);         
+                  agent.add("test"+P);         
               //      break; 
               //  }   
         // } 
