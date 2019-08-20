@@ -66,7 +66,7 @@ app.post('/webhook',express.json(), (req, res) => {
 
       function SAPInfo(agent) {
         let fName =  req.body.queryResult.parameters.Object;
-        let firstname =  req.body.queryResult.parameters.given-name;
+        let firstname =  req.body.queryResult.parameters.person.name;
 
         const nameCapitalized = fName.charAt(0).toUpperCase() + fName.slice(1)
         // let name =  req.body.queryResult.parameters.person.name;
