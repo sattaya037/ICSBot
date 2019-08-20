@@ -79,7 +79,7 @@ app.post('/webhook',express.json(), (req, res) => {
                       "contents": [
                         {
                           "type": "text",
-                          "text": "Header",
+                          "text": "SAP",
                           "align": "center"
                         }
                       ]
@@ -97,7 +97,7 @@ app.post('/webhook',express.json(), (req, res) => {
                       "contents": [
                         {
                           "type": "text",
-                          "text": "Body",
+                          "text": sapRespond.d.results[i].Firstname+"  "+sapRespond.d.results[i].Lastname,
                           "align": "center"
                         }
                       ]
