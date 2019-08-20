@@ -88,8 +88,8 @@ app.post('/webhook',express.json(), (req, res) => {
                     "hero": {
                       "type": "image",
                       "url": "https://ics-bot-bot.herokuapp.com/image",
-                      "size": "full",
-                      "aspectRatio": "1.51:1",
+                      "size": "5xl",
+                      "aspectRatio": "1.91:1",
                       "aspectMode": "fit"
                     },
                     "body": {
