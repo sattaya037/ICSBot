@@ -67,6 +67,7 @@ app.post('/webhook',express.json(), (req, res) => {
       function SAPInfo(agent) {
         let fName =  req.body.queryResult.parameters.Object;
         const nameCapitalized = fName.charAt(0).toUpperCase() + fName.slice(1)
+        let name =  req.body.queryResult.parameters.person.name;
 
         console.log(fName);
           // for (let i = 0; i < sapRespond.d.results.length; i++) {
@@ -145,7 +146,7 @@ app.post('/webhook',express.json(), (req, res) => {
           //       };
                 // let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
 
-                  agent.add(nameCapitalized);         
+                  agent.add(nameCapitalized+" "+name);         
               //      break; 
               //  }   
         // } 
