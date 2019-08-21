@@ -76,14 +76,16 @@ app.post('/webhook',express.json(), (req, res) => {
             if(sapRespond.d.results[i].Firstname == nameCapitalized){
               agent.add(sapRespond.d.results[i].Lastname+" ");  
 
-            }else{
-              agent.add("not");  
-
             }
-      }       
+          }       
 
         }else if(wording == "nn"){
-          agent.add(nameCapitalized);         
+          for (let i = 0; i < sapRespond.d.results.length; i++) {
+            if(sapRespond.d.results[i].Nickname == nameCapitalized){
+              agent.add(sapRespond.d.results[i].Firstname+" ");  
+
+            }
+          }  
 
         }
 
