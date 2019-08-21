@@ -145,7 +145,8 @@ app.post('/webhook',express.json(), (req, res) => {
               Birthdate += sapRespond.d.results[i].Birthdate;
               Position += sapRespond.d.results[i].Position;
               Line += sapRespond.d.results[i].Line;
-              var payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
+              var payload = new Payload(`LINE`,payloadJson, { sendAsMessage: true });
+              console.log(payloadJson);
               agent.add(payload);  
 
             }
@@ -161,7 +162,7 @@ app.post('/webhook',express.json(), (req, res) => {
               Birthdate += sapRespond.d.results[i].Birthdate;
               Position += sapRespond.d.results[i].Position;
               Line += sapRespond.d.results[i].Line;
-              var payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
+              var payload = new Payload(`LINE`, this.payloadJson, { sendAsMessage: true });
               agent.add(payload);  
             }
           }  
