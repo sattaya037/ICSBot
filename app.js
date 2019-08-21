@@ -73,9 +73,10 @@ app.post('/webhook',express.json(), (req, res) => {
 
         if(wording == "fn"){
           for (let i = 0; i < sapRespond.d.results.length; i++) {
-            var name = sapRespond.d.results[i].Firstname;
-            var lastname = sapRespond.d.results[i].Lastname;
-            agent.add(name+" "+lastname);  
+            if(sapRespond.d.results[i].Firstname == nameCapitalized){
+              agent.add(name+" "+lastname);  
+
+            }
       }       
 
         }else if(wording == "nn"){
