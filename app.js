@@ -158,7 +158,7 @@ app.post('/webhook',express.json(), (req, res) => {
             if(sapRespond.d.results[i].Nickname == nameCapitalized){
            
              let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
-             agent.add(payload);         
+             agent.add("name"+" "+sapRespond.d.results[i].Nickname);         
 
                 break; 
             }   
