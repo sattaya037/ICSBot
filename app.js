@@ -65,104 +65,109 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function SAPInfo(agent) {
-        // let fName =  req.body.queryResult.parameters.Object;
-        // let firstname =  req.body.queryResult.parameters.EmployeeName;
-        // let condition =  req.body.queryResult.parameters.Object;
         var UserSay =agent.query;
         var wording =UserSay.slice(0, 2);
         var name = UserSay.substr(3);
         var nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
-
+        const payloadJson = {
+          "type": "flex",
+          "altText": "Flex Message",
+          "contents": {
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "SAP",
+                  "align": "center"
+                }
+              ]
+            },
+            "hero": {
+              "type": "image",
+              "url": "https://ics-bot-bot.herokuapp.com/image",
+              "size": "5xl",
+              "aspectRatio": "1.91:1",
+              "aspectMode": "fit"
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": sapRespond.d.results[i].Firstname+"  "+sapRespond.d.results[i].Lastname+"("+sapRespond.d.results[i].Nickname+")",
+                  "align": "center",
+                  "weight": "bold",
+                  "size": "lg"
+                },
+                {
+                  "type": "separator",
+                  "margin": "lg"
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "spacer"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Tel:"+" "+sapRespond.d.results[i].Tel
+                    },
+                    {
+                      "type": "text",
+                      "text": "Email:"+" "+sapRespond.d.results[i].Email
+                    },
+                    {
+                      "type": "text",
+                      "text": "Birthdate:"+" "+sapRespond.d.results[i].Birthdate
+                    },
+                    {
+                      "type": "text",
+                      "text": "Position:"+" "+sapRespond.d.results[i].Position
+                    },
+                    {
+                      "type": "text",
+                      "text": "Line:"+" "+sapRespond.d.results[i].Line
+                    }
+                  ]
+                },
+              ]
+            }
+          }
+        };
         if(wording == "fn"){
+          for (let i = 0; i < sapRespond.d.results.length; i++) {
+            if(sapRespond.d.results[i].Firstname == nameCapitalized){
+           
+             let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
+             agent.add(payload);         
+
+                break; 
+            }   
+     } 
           agent.add(nameCapitalized);         
 
         }else if(wording == "nn"){
-          agent.add(nameCapitalized);         
+          for (let i = 0; i < sapRespond.d.results.length; i++) {
+            if(sapRespond.d.results[i].Nickname == nameCapitalized){
+           
+             let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
+             agent.add(payload);         
+
+                break; 
+            }   
+     } 
 
         }
-        // const nameCapitalized = fName.charAt(0).toUpperCase() + fName.slice(1)
-        // let name =  req.body.queryResult.parameters.person.name;
 
 
-          // for (let i = 0; i < sapRespond.d.results.length; i++) {
-          //      if(sapRespond.d.results[i].Firstname == fName){
-          //       const payloadJson = {
-          //         "type": "flex",
-          //         "altText": "Flex Message",
-          //         "contents": {
-          //           "type": "bubble",
-          //           "direction": "ltr",
-          //           "header": {
-          //             "type": "box",
-          //             "layout": "vertical",
-          //             "contents": [
-          //               {
-          //                 "type": "text",
-          //                 "text": "SAP",
-          //                 "align": "center"
-          //               }
-          //             ]
-          //           },
-          //           "hero": {
-          //             "type": "image",
-          //             "url": "https://ics-bot-bot.herokuapp.com/image",
-          //             "size": "5xl",
-          //             "aspectRatio": "1.91:1",
-          //             "aspectMode": "fit"
-          //           },
-          //           "body": {
-          //             "type": "box",
-          //             "layout": "vertical",
-          //             "contents": [
-          //               {
-          //                 "type": "text",
-          //                 "text": sapRespond.d.results[i].Firstname+"  "+sapRespond.d.results[i].Lastname+"("+sapRespond.d.results[i].Nickname+")",
-          //                 "align": "center",
-          //                 "weight": "bold",
-          //                 "size": "lg"
-          //               },
-          //               {
-          //                 "type": "separator",
-          //                 "margin": "lg"
-          //               },
-          //               {
-          //                 "type": "box",
-          //                 "layout": "vertical",
-          //                 "contents": [
-          //                   {
-          //                     "type": "spacer"
-          //                   },
-          //                   {
-          //                     "type": "text",
-          //                     "text": "Tel:"+" "+sapRespond.d.results[i].Tel
-          //                   },
-          //                   {
-          //                     "type": "text",
-          //                     "text": "Email:"+" "+sapRespond.d.results[i].Email
-          //                   },
-          //                   {
-          //                     "type": "text",
-          //                     "text": "Birthdate:"+" "+sapRespond.d.results[i].Birthdate
-          //                   },
-          //                   {
-          //                     "type": "text",
-          //                     "text": "Position:"+" "+sapRespond.d.results[i].Position
-          //                   },
-          //                   {
-          //                     "type": "text",
-          //                     "text": "Line:"+" "+sapRespond.d.results[i].Line
-          //                   }
-          //                 ]
-          //               },
-          //             ]
-          //           }
-          //         }
-          //       };
-                // let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
-
-              //      break; 
-              //  }   
-        // } 
+       
 
       }
     
