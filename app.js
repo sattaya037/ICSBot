@@ -62,7 +62,6 @@ app.post('/webhook',express.json(), (req, res) => {
         var wording =UserSay.slice(0, 2);
         var name = UserSay.substr(3);
         var nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
-        var Firstname,Lastname,Nickname,Tel,Email,Birthdate,Position,Line;
         var payloadJson={
            "type": "flex",
                 "altText": "Flex Message",
@@ -146,7 +145,7 @@ app.post('/webhook',express.json(), (req, res) => {
               Birthdate += sapRespond.d.results[i].Birthdate;
               Position += sapRespond.d.results[i].Position;
               Line += sapRespond.d.results[i].Line;
-              let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
+              var payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
               agent.add(payload);  
 
             }
@@ -162,7 +161,7 @@ app.post('/webhook',express.json(), (req, res) => {
               Birthdate += sapRespond.d.results[i].Birthdate;
               Position += sapRespond.d.results[i].Position;
               Line += sapRespond.d.results[i].Line;
-              let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
+              var payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
               agent.add(payload);  
             }
           }  
