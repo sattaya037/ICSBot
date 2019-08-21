@@ -71,11 +71,13 @@ app.post('/webhook',express.json(), (req, res) => {
         var UserSay =agent.query;
         var wording =UserSay.slice(0, 2);
         var name = UserSay.substr(3);
+        var nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
+
         if(wording == "fn"){
-          agent.add(name);         
+          agent.add(nameCapitalized);         
 
         }else if(wording == "nn"){
-          agent.add(name);         
+          agent.add(nameCapitalized);         
 
         }
         // const nameCapitalized = fName.charAt(0).toUpperCase() + fName.slice(1)
