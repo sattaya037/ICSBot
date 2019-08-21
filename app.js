@@ -151,12 +151,12 @@ app.post('/webhook',express.json(), (req, res) => {
             }   
           } 
         }else if(wording == "nn"){
+          agent.add("name"+" "+nameCapitalized);         
+
           for (let i = 0; i < sapRespond.d.results.length; i++) {
-            if(sapRespond.d.results[i].Nickname == nameCapitalized){
-             agent.add("name"+" "+sapRespond.d.results[i].Nickname);         
-                break; 
-            }   
-     } 
+              var nickname = sapRespond.d.results[i].Nickname
+
+            } 
 
         }
 
