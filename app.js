@@ -68,7 +68,7 @@ app.post('/webhook',express.json(), (req, res) => {
         // let fName =  req.body.queryResult.parameters.Object;
         // let firstname =  req.body.queryResult.parameters.EmployeeName;
         let name =  req.body.queryResult.parameters.Firstname;
-
+        console.log(name);
         // const nameCapitalized = fName.charAt(0).toUpperCase() + fName.slice(1)
         // let name =  req.body.queryResult.parameters.person.name;
 
