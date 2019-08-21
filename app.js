@@ -71,11 +71,19 @@ app.post('/webhook',express.json(), (req, res) => {
         var UserSay =agent.query;
         var wording =UserSay.slice(0, 2);
         console.log('query: ', wording);
+        if(wording == "fn"){
+          agent.add("FirstName");         
 
+        }else if(wording == "nn"){
+          agent.add("NickName");         
+
+        }else{
+          agent.add("Please check your wording. [You can say 'Help' for help]");         
+
+        }
         // const nameCapitalized = fName.charAt(0).toUpperCase() + fName.slice(1)
         // let name =  req.body.queryResult.parameters.person.name;
 
-        agent.add("Hi"+" "+wording);         
 
           // for (let i = 0; i < sapRespond.d.results.length; i++) {
           //      if(sapRespond.d.results[i].Firstname == fName){
