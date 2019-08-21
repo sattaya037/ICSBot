@@ -148,16 +148,15 @@ app.post('/webhook',express.json(), (req, res) => {
               
         if(wording == "fn"){
           for (let i = 0; i < sapRespond.d.results.length; i++) {
-            var Firstname =sapRespond.d.results[i].Firstname;
-            var Lastname =sapRespond.d.results[i].Lastname;
-            var Nickname =sapRespond.d.results[i].Nickname;
-            var Tel =sapRespond.d.results[i].Tel;
-            var Email =sapRespond.d.results[i].Email;
-            var Birthdate =sapRespond.d.results[i].Birthdate;
-            var Position =sapRespond.d.results[i].Position;
-            var Line =sapRespond.d.results[i].Line;
-
             if(sapRespond.d.results[i].Firstname == nameCapitalized){
+              var Firstname =sapRespond.d.results[i].Firstname;
+              var Lastname =sapRespond.d.results[i].Lastname;
+              var Nickname =sapRespond.d.results[i].Nickname;
+              var Tel =sapRespond.d.results[i].Tel;
+              var Email =sapRespond.d.results[i].Email;
+              var Birthdate =sapRespond.d.results[i].Birthdate;
+              var Position =sapRespond.d.results[i].Position;
+              var Line =sapRespond.d.results[i].Line;
               let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
               agent.add(payload);  
 
@@ -165,16 +164,15 @@ app.post('/webhook',express.json(), (req, res) => {
           }       
         }else if(wording == "nn"){
           for (let i = 0; i < sapRespond.d.results.length; i++) {
-            var Firstname =sapRespond.d.results[i].Firstname;
-            var Lastname =sapRespond.d.results[i].Lastname;
-            var Nickname =sapRespond.d.results[i].Nickname;
-            var Tel =sapRespond.d.results[i].Tel;
-            var Email =sapRespond.d.results[i].Email;
-            var Birthdate =sapRespond.d.results[i].Birthdate;
-            var Position =sapRespond.d.results[i].Position;
-            var Line =sapRespond.d.results[i].Line;
-
             if(sapRespond.d.results[i].Nickname == nameCapitalized){
+              var Firstname =sapRespond.d.results[i].Firstname;
+              var Lastname =sapRespond.d.results[i].Lastname;
+              var Nickname =sapRespond.d.results[i].Nickname;
+              var Tel =sapRespond.d.results[i].Tel;
+              var Email =sapRespond.d.results[i].Email;
+              var Birthdate =sapRespond.d.results[i].Birthdate;
+              var Position =sapRespond.d.results[i].Position;
+              var Line =sapRespond.d.results[i].Line;
               let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
               agent.add(payload);  
             }
