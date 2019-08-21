@@ -67,12 +67,14 @@ app.post('/webhook',express.json(), (req, res) => {
       function SAPInfo(agent) {
         // let fName =  req.body.queryResult.parameters.Object;
         // let firstname =  req.body.queryResult.parameters.EmployeeName;
-        let name =  req.body.queryResult.parameters.Firstname;
+        let name =  req.body.queryResult.parameters.Name;
+        let condition =  req.body.queryResult.parameters.Object;
+
         console.log(name);
         // const nameCapitalized = fName.charAt(0).toUpperCase() + fName.slice(1)
         // let name =  req.body.queryResult.parameters.person.name;
 
-        agent.add(" "+name);         
+        agent.add(condition+" "+name);         
 
           // for (let i = 0; i < sapRespond.d.results.length; i++) {
           //      if(sapRespond.d.results[i].Firstname == fName){
