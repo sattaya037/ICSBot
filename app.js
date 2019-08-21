@@ -50,11 +50,14 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function listEmployee(agent) {
-        for (let i = 0; i < sapRespond.d.results.length; i++) {
-              var name = sapRespond.d.results[i].Firstname;
-              var lastname = sapRespond.d.results[i].Lastname;
-              agent.add(name+" "+lastname);  
-        } 
+        agent.add(sapRespond.d.results.Firstname);  
+        var a = sapRespond.d.results.Firstname;
+          console.log(a);
+        // for (let i = 0; i < sapRespond.d.results.length; i++) {
+        //       var name = sapRespond.d.results[i].Firstname;
+        //       var lastname = sapRespond.d.results[i].Lastname;
+        //       agent.add(name+" "+lastname);  
+        // } 
       }
 
       function Info(agent) {
