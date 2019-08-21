@@ -76,6 +76,9 @@ app.post('/webhook',express.json(), (req, res) => {
             if(sapRespond.d.results[i].Firstname == nameCapitalized){
               agent.add(name+" "+lastname);  
 
+            }else{
+              agent.add("not");  
+
             }
       }       
 
