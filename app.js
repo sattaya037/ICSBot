@@ -66,7 +66,7 @@ app.post('/webhook',express.json(), (req, res) => {
 
    
 
-      function EmployeeInfo(agent) {
+      function Info(agent) {
 
         var UserSay =agent.query;
         var wording =UserSay.slice(0, 2);
@@ -240,7 +240,7 @@ app.post('/webhook',express.json(), (req, res) => {
       let intentMap = new Map();
       intentMap.set('BMI - custom - yes', BMI);
       intentMap.set('Employees', listEmployee);
-      intentMap.set('EmployeeInfo', EmployeeInfo);
+      intentMap.set('EmployeeInfo', Info);
 
       agent.handleRequest(intentMap);
    
