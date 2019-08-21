@@ -50,7 +50,7 @@ app.post('/webhook',express.json(), (req, res) => {
       }
 
       function listEmployee(agent) {
-        var a = sapRespond.d.results;
+        var a = sapRespond.d.results.Firstname;
           console.log(a);
         agent.add(a);  
         
