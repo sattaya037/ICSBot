@@ -62,14 +62,9 @@ app.post('/webhook',express.json(), (req, res) => {
         var wording =UserSay.slice(0, 2);
         var name = UserSay.substr(3);
         var nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
-        
-
-              
-        if(wording == "fn"){
-          for (let i = 0; i < sapRespond.d.results.length; i++) {
-            if(sapRespond.d.results[i].Firstname == nameCapitalized){
-              const payloadJson = {
-                "type": "flex",
+        var Firstname,Lastname,Nickname,Tel,Email,Birthdate,Position,Line;
+        var payloadJson={
+           "type": "flex",
                 "altText": "Flex Message",
                 "contents": {
                   "type": "bubble",
@@ -98,7 +93,7 @@ app.post('/webhook',express.json(), (req, res) => {
                     "contents": [
                       {
                         "type": "text",
-                        "text": sapRespond.d.results[i].Firstname+"  "+sapRespond.d.results[i].Lastname+"("+sapRespond.d.results[i].Nickname+")",
+                        "text": Firstname+"  "+Lastname+"("+Nickname+")",
                         "align": "center",
                         "weight": "bold",
                         "size": "lg"
@@ -116,30 +111,41 @@ app.post('/webhook',express.json(), (req, res) => {
                           },
                           {
                             "type": "text",
-                            "text": "Tel:"+" "+sapRespond.d.results[i].Tel
+                            "text": "Tel:"+" "+Tel
                           },
                           {
                             "type": "text",
-                            "text": "Email:"+" "+sapRespond.d.results[i].Email
+                            "text": "Email:"+" "+Email
                           },
                           {
                             "type": "text",
-                            "text": "Birthdate:"+" "+sapRespond.d.results[i].Birthdate
+                            "text": "Birthdate:"+" "+Birthdate
                           },
                           {
                             "type": "text",
-                            "text": "Position:"+" "+sapRespond.d.results[i].Position
+                            "text": "Position:"+" "+Position
                           },
                           {
                             "type": "text",
-                            "text": "Line:"+" "+sapRespond.d.results[i].Line
+                            "text": "Line:"+" "+Line
                           }
                         ]
                       },
                     ]
                   }
                 }
-              };
+        };
+        if(wording == "fn"){
+          for (let i = 0; i < sapRespond.d.results.length; i++) {
+            if(sapRespond.d.results[i].Firstname == nameCapitalized){
+              Firstname += sapRespond.d.results[i].Firstname;
+              Lastname += sapRespond.d.results[i].Lastname;
+              Nickname += sapRespond.d.results[i].Nickname;
+              Tel += sapRespond.d.results[i].Tel;
+              Email += sapRespond.d.results[i].Email;
+              Birthdate += sapRespond.d.results[i].Birthdate;
+              Position += sapRespond.d.results[i].Position;
+              Line += sapRespond.d.results[i].Line;
               let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
               agent.add(payload);  
 
@@ -148,78 +154,14 @@ app.post('/webhook',express.json(), (req, res) => {
         }else if(wording == "nn"){
           for (let i = 0; i < sapRespond.d.results.length; i++) {
             if(sapRespond.d.results[i].Nickname == nameCapitalized){
-              const payloadJson = {
-                "type": "flex",
-                "altText": "Flex Message",
-                "contents": {
-                  "type": "bubble",
-                  "direction": "ltr",
-                  "header": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "SAP",
-                        "align": "center"
-                      }
-                    ]
-                  },
-                  "hero": {
-                    "type": "image",
-                    "url": "https://ics-bot-bot.herokuapp.com/image",
-                    "size": "5xl",
-                    "aspectRatio": "1.91:1",
-                    "aspectMode": "fit"
-                  },
-                  "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": sapRespond.d.results[i].Firstname+"  "+sapRespond.d.results[i].Lastname+"("+sapRespond.d.results[i].Nickname+")",
-                        "align": "center",
-                        "weight": "bold",
-                        "size": "lg"
-                      },
-                      {
-                        "type": "separator",
-                        "margin": "lg"
-                      },
-                      {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                          {
-                            "type": "spacer"
-                          },
-                          {
-                            "type": "text",
-                            "text": "Tel:"+" "+sapRespond.d.results[i].Tel
-                          },
-                          {
-                            "type": "text",
-                            "text": "Email:"+" "+sapRespond.d.results[i].Email
-                          },
-                          {
-                            "type": "text",
-                            "text": "Birthdate:"+" "+sapRespond.d.results[i].Birthdate
-                          },
-                          {
-                            "type": "text",
-                            "text": "Position:"+" "+sapRespond.d.results[i].Position
-                          },
-                          {
-                            "type": "text",
-                            "text": "Line:"+" "+sapRespond.d.results[i].Line
-                          }
-                        ]
-                      },
-                    ]
-                  }
-                }
-              };
+              Firstname += sapRespond.d.results[i].Firstname;
+              Lastname += sapRespond.d.results[i].Lastname;
+              Nickname += sapRespond.d.results[i].Nickname;
+              Tel += sapRespond.d.results[i].Tel;
+              Email += sapRespond.d.results[i].Email;
+              Birthdate += sapRespond.d.results[i].Birthdate;
+              Position += sapRespond.d.results[i].Position;
+              Line += sapRespond.d.results[i].Line;
               let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
               agent.add(payload);  
             }
