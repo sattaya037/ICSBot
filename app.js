@@ -69,7 +69,7 @@ app.post('/webhook',express.json(), (req, res) => {
         var wording =UserSay.slice(0, 2);
         var name = UserSay.substr(3);
         var nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
-        const payloadJson = {
+        var payloadJson = {
           "type": "flex",
           "altText": "Flex Message",
           "contents": {
@@ -147,19 +147,13 @@ app.post('/webhook',express.json(), (req, res) => {
            
              let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
              agent.add(payload);         
-
                 break; 
             }   
-     } 
-          agent.add(nameCapitalized);         
-
+          } 
         }else if(wording == "nn"){
           for (let i = 0; i < sapRespond.d.results.length; i++) {
             if(sapRespond.d.results[i].Nickname == nameCapitalized){
-           
-             let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
              agent.add("name"+" "+sapRespond.d.results[i].Nickname);         
-
                 break; 
             }   
      } 
