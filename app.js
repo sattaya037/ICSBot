@@ -55,7 +55,7 @@ app.post('/webhook',express.json(), (req, res) => {
 
       }
 
-      function Employees(agent) {
+      function listEmployee(agent) {
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname;
               var lastname = sapRespond.d.results[i].Lastname;
@@ -239,7 +239,7 @@ app.post('/webhook',express.json(), (req, res) => {
       // Run the proper function handler based on the matched Dialogflow intent name
       let intentMap = new Map();
       intentMap.set('BMI - custom - yes', BMI);
-      intentMap.set('Employees', Employees);
+      intentMap.set('Employees', listEmployee);
       intentMap.set('EmployeeInfo', EmployeeInfo);
 
       agent.handleRequest(intentMap);
