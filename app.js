@@ -69,12 +69,12 @@ app.post('/webhook',express.json(), (req, res) => {
         // let firstname =  req.body.queryResult.parameters.EmployeeName;
         let name =  req.body.queryResult.parameters.Name;
         // let condition =  req.body.queryResult.parameters.Object;
-
+        console.log('intent: ' + agent.intent);
         console.log(name);
         // const nameCapitalized = fName.charAt(0).toUpperCase() + fName.slice(1)
         // let name =  req.body.queryResult.parameters.person.name;
 
-        agent.add(" "+name);         
+        agent.add("Hi");         
 
           // for (let i = 0; i < sapRespond.d.results.length; i++) {
           //      if(sapRespond.d.results[i].Firstname == fName){
