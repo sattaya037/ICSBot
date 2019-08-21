@@ -70,15 +70,12 @@ app.post('/webhook',express.json(), (req, res) => {
         // let condition =  req.body.queryResult.parameters.Object;
         var UserSay =agent.query;
         var wording =UserSay.slice(0, 2);
-        console.log('query: ', wording);
+        var name = UserSay.substr(3);
         if(wording == "fn"){
-          agent.add("FirstName");         
+          agent.add(name);         
 
         }else if(wording == "nn"){
-          agent.add("NickName");         
-
-        }else{
-          agent.add("Please check your wording. [You can say 'Help' for help]");         
+          agent.add(name);         
 
         }
         // const nameCapitalized = fName.charAt(0).toUpperCase() + fName.slice(1)
