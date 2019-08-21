@@ -49,6 +49,11 @@ app.post('/webhook',express.json(), (req, res) => {
         agent.add("ํBMI:"+BMI);
       }
 
+      function locate(agent) {
+        console.log('query: ', agent.query);
+        agent.add("ํBMI:"+agent.query);
+      }
+
       function listEmployee(agent) {
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname;
@@ -64,9 +69,6 @@ app.post('/webhook',express.json(), (req, res) => {
         var wording =UserSay.slice(0, 2);
         var name = UserSay.substr(3);
         var nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
-        
-
-              
         if(wording == "fn"){
           for (let i = 0; i < sapRespond.d.results.length; i++) {
             if(sapRespond.d.results[i].Firstname == nameCapitalized){
@@ -235,6 +237,7 @@ app.post('/webhook',express.json(), (req, res) => {
       intentMap.set('BMI - custom - yes', BMI);
       intentMap.set('Employees', listEmployee);
       intentMap.set('EmployeeInfo', Info);
+      intentMap.set('Weather - custom', locate);
 
       agent.handleRequest(intentMap);
    
