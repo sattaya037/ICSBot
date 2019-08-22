@@ -22,6 +22,10 @@ app.post('/webhook',express.json(), (req, res) => {
   console.log('Body: ',req.body);
   console.log('headers: ',req.headers);
       //Create an instance
+      const reply_token = req.body.events[0].replyToken;
+      const msg = req.body.events[0].message.text;
+      console.log(msg);
+
       const agent = new WebhookClient({
         request: req,
         response: res
@@ -35,6 +39,9 @@ app.post('/webhook',express.json(), (req, res) => {
         },
       });
       var sapRespond = JSON.parse(odata.getBody());
+
+      //connectLine
+    
       //Test get value of WebhookClient
       console.log('agentVersion: ' + agent.agentVersion);
       console.log('intent: ' + agent.intent);
@@ -150,6 +157,7 @@ app.post('/webhook',express.json(), (req, res) => {
         };
         let payload = new Payload(`LINE`, FirstMessage, { sendAsMessage: true });
 
+        
         agent.add(payload); 
 
       }
