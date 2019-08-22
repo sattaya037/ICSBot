@@ -150,94 +150,12 @@ app.post('/webhook',express.json(), (req, res) => {
         };
 
         const SecondMessage = {
-          "type": "flex",
-          "altText": "Flex Message",
-          "contents": {
-            "type": "bubble",
-            "direction": "ltr",
-            "header": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "Help",
-                  "align": "center"
-                }
-              ]
-            },
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": "View Employee List",
-                      "weight": "bold"
-                    },
-                    {
-                      "type": "text",
-                      "text": "[l>employees]"
-                    },
-                    {
-                      "type": "text",
-                      "text": "(e.g. l>employees)"
-                    }
-                  ]
-                },
-                {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "spacer"
-                    },
-                    {
-                      "type": "text",
-                      "text": "View Employee by Name",
-                      "weight": "bold"
-                    },
-                    {
-                      "type": "text",
-                      "text": "[fn>'Firstname']"
-                    },
-                    {
-                      "type": "text",
-                      "text": "(e.g. fn>Sopon)"
-                    }
-                  ]
-                },
-                {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "spacer"
-                    },
-                    {
-                      "type": "text",
-                      "text": "View Employee by Nickname",
-                      "weight": "bold"
-                    },
-                    {
-                      "type": "text",
-                      "text": "[nn>'Nickname']"
-                    },
-                    {
-                      "type": "text",
-                      "text": "(e.g. fn>Sudyod)"
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+            "type": "text",
+            "text": "Hello"
         };
-        let payload = new Payload(`LINE`, FirstMessage, { sendAsMessage: true });
+
+        const payloadJson=FirstMessage+SecondMessage;
+        let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
         agent.add(payload); 
       }
 
