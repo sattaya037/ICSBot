@@ -49,11 +49,6 @@ app.post('/webhook',express.json(), (req, res) => {
         agent.add("ํBMI:"+BMI);
       }
 
-      function locate(agent) {
-        console.log('query: ', agent.query);
-        agent.add("ํBMI:"+agent.query);
-      }
-
       function listEmployee(agent) {
         for (let i = 0; i < sapRespond.d.results.length; i++) {
               var name = sapRespond.d.results[i].Firstname;
@@ -62,6 +57,188 @@ app.post('/webhook',express.json(), (req, res) => {
 
               agent.add(name+" "+lastname+"("+Nickname+")");  
         } 
+      }
+
+      function getHelp(agent){
+        const FirstMessage = {
+          "type": "flex",
+          "altText": "Flex Message",
+          "contents": {
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Help",
+                  "align": "center"
+                }
+              ]
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "View Employee List",
+                      "weight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "text": "[l>employees]"
+                    },
+                    {
+                      "type": "text",
+                      "text": "(e.g. l>employees)"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "spacer"
+                    },
+                    {
+                      "type": "text",
+                      "text": "View Employee by Name",
+                      "weight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "text": "[fn>'Firstname']"
+                    },
+                    {
+                      "type": "text",
+                      "text": "(e.g. fn>Sopon)"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "spacer"
+                    },
+                    {
+                      "type": "text",
+                      "text": "View Employee by Nickname",
+                      "weight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "text": "[nn>'Nickname']"
+                    },
+                    {
+                      "type": "text",
+                      "text": "(e.g. fn>Sudyod)"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        };
+
+        const SecondMessage = {
+          "type": "flex",
+          "altText": "Flex Message",
+          "contents": {
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Help",
+                  "align": "center"
+                }
+              ]
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "View Employee List",
+                      "weight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "text": "[l>employees]"
+                    },
+                    {
+                      "type": "text",
+                      "text": "(e.g. l>employees)"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "spacer"
+                    },
+                    {
+                      "type": "text",
+                      "text": "View Employee by Name",
+                      "weight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "text": "[fn>'Firstname']"
+                    },
+                    {
+                      "type": "text",
+                      "text": "(e.g. fn>Sopon)"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "spacer"
+                    },
+                    {
+                      "type": "text",
+                      "text": "View Employee by Nickname",
+                      "weight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "text": "[nn>'Nickname']"
+                    },
+                    {
+                      "type": "text",
+                      "text": "(e.g. fn>Sudyod)"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        };
+        let payload = new Payload(`LINE`, FirstMessage,SecondMessage, { sendAsMessage: true });
+        agent.add(payload); 
       }
 
       function Info(agent) {
@@ -146,7 +323,6 @@ app.post('/webhook',express.json(), (req, res) => {
               };
               let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
               agent.add(payload);  
-
             }
           }       
         }else if(wording == "nn"){
@@ -237,8 +413,9 @@ app.post('/webhook',express.json(), (req, res) => {
       intentMap.set('BMI - custom - yes', BMI);
       intentMap.set('Employees', listEmployee);
       intentMap.set('EmployeeInfo', Info);
-      intentMap.set('Weather - custom', locate);
+      intentMap.set('Help', getHelp);
 
+      
       agent.handleRequest(intentMap);
    
 
