@@ -148,16 +148,9 @@ app.post('/webhook',express.json(), (req, res) => {
             }
           }
         };
-
-        const SecondMessage = {
-            "type": "text",
-            "text": "Hello"
-        };
         let payload = new Payload(`LINE`, FirstMessage, { sendAsMessage: true });
-        let payload2 = new Payload(`LINE`, SecondMessage, { sendAsMessage: true });
 
         agent.add(payload); 
-        agent.add(payload2); 
 
       }
 
