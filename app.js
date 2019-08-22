@@ -237,7 +237,7 @@ app.post('/webhook',express.json(), (req, res) => {
             }
           }
         };
-        let payload = new Payload(`LINE`, FirstMessage,SecondMessage, { sendAsMessage: true });
+        let payload = new Payload(`LINE`, FirstMessage, { sendAsMessage: true });
         agent.add(payload); 
       }
 
