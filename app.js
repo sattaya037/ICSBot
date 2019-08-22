@@ -9,6 +9,7 @@ const {
   WebhookClient,Payload
 } = require('dialogflow-fulfillment');
 app.use(morgan('dev'))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
@@ -22,10 +23,10 @@ app.post('/webhook',express.json(), (req, res) => {
   console.log('Body: ',req.body);
   console.log('headers: ',req.headers);
       //Create an instance
-      const reply_token = req.body.events[0].replyToken;
-      const msg = req.body.events[0].message.text;
-      console.log(msg);
-
+      let reply_token = req.body.events[0].replyToken
+      let msg = req.body.events[0].message.text
+      var a = msg;
+      console.log(a);
       const agent = new WebhookClient({
         request: req,
         response: res
