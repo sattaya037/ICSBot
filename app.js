@@ -17,8 +17,9 @@ app.get('/', (req, res) => {
     success: true
   });
 })
+// express.json(),
 app.use('/image', express.static('image/ICS-Logo.png'))
-app.post('/webhook',express.json(), (req, res) => {
+app.post('/webhook', (req, res) => {
   console.log('POST: /');
   console.log('Body: ',req.body);
   console.log('headers: ',req.headers);
