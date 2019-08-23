@@ -374,6 +374,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
   Promise
     .all(req.body.events.map(handleEvent))
     .then((result) => res.json(result));
+    console.log(result);
 });
 
 // event handler
@@ -394,4 +395,4 @@ function handleEvent(event) {
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`listening on ${port}`);
-});
+}); 
