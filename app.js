@@ -22,6 +22,8 @@ app.post('/webhook',express.json(), (req, res) => {
   console.log('POST: /');
   console.log('Body: ',req.body);
   console.log('headers: ',req.headers);
+  var a =JSON.stringify(req.body);
+  console.log(a);
       //Create an instance
       const agent = new WebhookClient({
         request: req,
