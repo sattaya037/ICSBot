@@ -22,7 +22,7 @@ app.use('/image', express.static('image/ICS-Logo.png'))
 app.post('/webhook', (req, res) => {
   console.log('POST: /');
   console.log('Body: ',req.body.originalDetectIntentRequest.payload);
-  console.log('headers: ',req.headers);
+// console.log('headers: ',req.headers);
       //Create an instance
       const agent = new WebhookClient({
         request: req,
@@ -41,11 +41,11 @@ app.post('/webhook', (req, res) => {
       //connectLine
       
       //Test get value of WebhookClient
-      console.log('agentVersion: ' + agent.agentVersion);
-      console.log('intent: ' + agent.intent);
-      console.log('locale: ' + agent.locale);
-      console.log('query: ', agent.query);
-      console.log('session: ', agent.session);
+      // console.log('agentVersion: ' + agent.agentVersion);
+      // console.log('intent: ' + agent.intent);
+      // console.log('locale: ' + agent.locale);
+      // console.log('query: ', agent.query);
+      // console.log('session: ', agent.session);
       //Function Location
       function BMI(agent) {
         let weight = req.body.queryResult.parameters.weight;
@@ -154,10 +154,7 @@ app.post('/webhook', (req, res) => {
           }
         };
         let payload = new Payload(`LINE`, FirstMessage, { sendAsMessage: true });
-
-        
         agent.add(payload); 
-
       }
 
       function Info(agent) {
@@ -333,8 +330,6 @@ app.post('/webhook', (req, res) => {
       intentMap.set('Employees', listEmployee);
       intentMap.set('EmployeeInfo', Info);
       intentMap.set('Help', getHelp);
-
-      
       agent.handleRequest(intentMap);
    
 
