@@ -239,12 +239,11 @@ app.post('/webhook', (req, res) => {
               }
             };
             if(wording == "fn" && Firstname == nameCapitalized ){
-              console.log(Firstname);
               let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
               agent.add(payload);  
             }else if(wording == "nn" && Nickname == nameCapitalized){
-              console.log(Nicknames);
-
+              let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
+              agent.add(payload);  
             }
           
         }
