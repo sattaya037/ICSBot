@@ -157,7 +157,7 @@ app.post('/webhook', (req, res) => {
         var name = UserSay.substr(3);
         var nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
         var Firstname = '',Lastname='',Nickname='',Tel='',Email='',Birthdate='',Position='',Line='';
-        const payloadJson = {
+        var payloadJson = {
                   "type": "flex",
                   "altText": "Flex Message",
                   "contents": {
@@ -229,7 +229,6 @@ app.post('/webhook', (req, res) => {
                     }
                   }
                 };
-             
         for (let i = 0; i < sapRespond.d.results.length; i++) {
             Firstname +=sapRespond.d.results[i].Firstname;
             Lastname +=sapRespond.d.results[i].Lastname;
@@ -241,13 +240,13 @@ app.post('/webhook', (req, res) => {
             Line +=sapRespond.d.results[i].Line;
             if(wording == "fn" && Firstname == nameCapitalized ){
               console.log(Firstname);
-
+              let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
+              agent.add(payload);  
             }else if(wording == "nn" && Nickname == nameCapitalized){
               console.log(Nicknames);
 
             }
-            let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
-            agent.add(payload);  
+          
         }
         // if(wording == "fn"){
         //   for (let i = 0; i < sapRespond.d.results.length; i++) {
