@@ -242,6 +242,7 @@ app.post('/webhook', (req, res) => {
               let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
               agent.add(payload);  
             }else if(wording == "nn" && Nickname == nameCapitalized){
+              console.log(Firstname);
               let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
               agent.add(payload);  
             }
