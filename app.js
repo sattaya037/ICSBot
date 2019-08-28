@@ -166,8 +166,8 @@ app.post('/webhook', (req, res) => {
             Birthdate +=sapRespond.d.results[i].Birthdate;
             Position +=sapRespond.d.results[i].Position;
             Line +=sapRespond.d.results[i].Line;
-            if(wording == "fn"){
-              console.log("Firstname")
+            if(wording == "fn" && Firstname == nameCapitalized ){
+              console.log(Firstname)
 
             }else if(wording == "nn"){
               console.log("Nickname")
