@@ -17,13 +17,18 @@ app.get('/', (req, res) => {
     success: true
   });
 })
-// express.json(),
 app.use('/image', express.static('image/ICS-Logo.png'))
 app.post('/webhook', (req, res) => {
   console.log('POST: /');
   console.log('Body: ',req.body.originalDetectIntentRequest.payload);
+  var messageInput =req.body.originalDetectIntentRequest.payload;
+  if(messageInput){
+    console.log("test")
+  }else{
+    console.log("test2")
+
+  }
 // console.log('headers: ',req.headers);
-      //Create an instance
       const agent = new WebhookClient({
         request: req,
         response: res
@@ -37,16 +42,12 @@ app.post('/webhook', (req, res) => {
         },
       });
       var sapRespond = JSON.parse(odata.getBody());
-
-      //connectLine
       
-      //Test get value of WebhookClient
       // console.log('agentVersion: ' + agent.agentVersion);
       // console.log('intent: ' + agent.intent);
       // console.log('locale: ' + agent.locale);
       // console.log('query: ', agent.query);
       // console.log('session: ', agent.session);
-      //Function Location
       function BMI(agent) {
         let weight = req.body.queryResult.parameters.weight;
         let height = req.body.queryResult.parameters.height;
