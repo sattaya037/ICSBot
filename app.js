@@ -21,13 +21,6 @@ app.use('/image', express.static('image/ICS-Logo.png'))
 app.post('/webhook', (req, res) => {
   console.log('POST: /');
   console.log('Body: ',req.body.originalDetectIntentRequest.payload);
-  var messageInput =req.body.originalDetectIntentRequest.payload;
-  if(messageInput){
-    console.log("test")
-  }else{
-    console.log("test2")
-
-  }
 // console.log('headers: ',req.headers);
       const agent = new WebhookClient({
         request: req,
@@ -163,9 +156,20 @@ app.post('/webhook', (req, res) => {
         var wording =UserSay.slice(0, 2);
         var name = UserSay.substr(3);
         var nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
+        var Firstname = '',Lastname='',Nickname='',Tel='',Email='',Birthdate='',Position='',Line='';
         if(wording == "fn"){
           for (let i = 0; i < sapRespond.d.results.length; i++) {
             if(sapRespond.d.results[i].Firstname == nameCapitalized){
+              Firstname +=sapRespond.d.results[i].Firstname;
+              Lastname +=sapRespond.d.results[i].Lastname;
+              Nickname +=sapRespond.d.results[i].Nickname;
+              Tel +=sapRespond.d.results[i].Tel;
+              Email +=sapRespond.d.results[i].Email;
+              Birthdate +=sapRespond.d.results[i].Birthdate;
+              Position +=sapRespond.d.results[i].Position;
+              Line +=sapRespond.d.results[i].Line;
+
+
               const payloadJson = {
                 "type": "flex",
                 "altText": "Flex Message",
@@ -196,7 +200,7 @@ app.post('/webhook', (req, res) => {
                     "contents": [
                       {
                         "type": "text",
-                        "text": sapRespond.d.results[i].Firstname+"  "+sapRespond.d.results[i].Lastname+"("+sapRespond.d.results[i].Nickname+")",
+                        "text": Firstname+"  "+Lastname+"("+Nickname+")",
                         "align": "center",
                         "weight": "bold",
                         "size": "lg"
@@ -214,23 +218,23 @@ app.post('/webhook', (req, res) => {
                           },
                           {
                             "type": "text",
-                            "text": "Tel:"+" "+sapRespond.d.results[i].Tel
+                            "text": "Tel:"+" "+Tel
                           },
                           {
                             "type": "text",
-                            "text": "Email:"+" "+sapRespond.d.results[i].Email
+                            "text": "Email:"+" "+Email
                           },
                           {
                             "type": "text",
-                            "text": "Birthdate:"+" "+sapRespond.d.results[i].Birthdate
+                            "text": "Birthdate:"+" "+Birthdate
                           },
                           {
                             "type": "text",
-                            "text": "Position:"+" "+sapRespond.d.results[i].Position
+                            "text": "Position:"+" "+Position
                           },
                           {
                             "type": "text",
-                            "text": "Line:"+" "+sapRespond.d.results[i].Line
+                            "text": "Line:"+" "+Line
                           }
                         ]
                       },
@@ -332,8 +336,6 @@ app.post('/webhook', (req, res) => {
       intentMap.set('EmployeeInfo', Info);
       intentMap.set('Help', getHelp);
       agent.handleRequest(intentMap);
-   
-
 });
 
 app.listen(port, () => {
