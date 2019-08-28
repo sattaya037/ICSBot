@@ -22,7 +22,6 @@ app.post('/webhook', (req, res) => {
   res.sendStatus(200)
   console.log(req.body.events[0].message);
 // console.log('POST: /');
-console.log('Body: ',req.body.originalDetectIntentRequest.payload);
 // console.log('headers: ',req.headers);
       const agent = new WebhookClient({
         request: req,
