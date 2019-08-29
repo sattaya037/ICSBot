@@ -26,6 +26,7 @@ console.log('Body: ',req.body.originalDetectIntentRequest.payload);
         request: req,
         response: res
       });
+      console.log("a:"+agent);
       const request = require('sync-request'),
       user = "JIRASIT.GO",
       password = "ICS@100";
