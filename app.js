@@ -21,8 +21,11 @@ app.use('/image', express.static('image/ICS-Logo.png'))
 app.post('/webhook', (req, res) => {
 console.log('POST: /');
 console.log('Body: ',req.body.originalDetectIntentRequest.payload);
-console.log("req"+JSON.stringify(req));
-console.log("res"+JSON.stringify(res));
+var a =JSON.stringify(req)
+var b =JSON.stringify(res)
+
+console.log("req"+a);
+console.log("res"+b);
 
 // console.log('headers: ',req.headers);
       const agent = new WebhookClient({
