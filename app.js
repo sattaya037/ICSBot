@@ -242,7 +242,11 @@ console.log('Body: ',req.body.originalDetectIntentRequest.payload);
                 }
               };
               let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
-              agent.add(sapRespond.d.results[i]);  
+              var obj ={
+                "FirstName":Firstname,
+                "LastName":Lastname
+              }
+              agent.add(obj);  
             }
           }       
         }else if(wording == "nn"){
