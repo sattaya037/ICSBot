@@ -11,7 +11,6 @@ const {
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
 app.get('/', (req, res) => {
   res.send({
     success: true
@@ -47,6 +46,8 @@ console.log('Body: ',req.body.originalDetectIntentRequest.payload);
         let height = req.body.queryResult.parameters.height;
         let BMI = weight/(height/100*height/100) ;  
         agent.add("ํBMI:"+BMI);
+        agent.add("ํBMI:"+BMI);
+
       }
 
       function listEmployee(agent) {
@@ -151,7 +152,7 @@ console.log('Body: ',req.body.originalDetectIntentRequest.payload);
         let payload = new Payload(`LINE`, FirstMessage, { sendAsMessage: true });
         agent.add(payload); 
       }
-
+      
       function Info(agent) {
         var UserSay =agent.query;
         var wording =UserSay.slice(0, 2);
