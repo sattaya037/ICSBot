@@ -246,7 +246,7 @@ console.log('Body: ',req.body.originalDetectIntentRequest.payload);
                 "FirstName":Firstname,
                 "LastName":Lastname
               }
-              agent.add(obj);  
+              agent.add(payload);  
             }
           }       
         }else if(wording == "nn"){
