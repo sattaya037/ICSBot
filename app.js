@@ -324,7 +324,7 @@ console.log('Body: ',req.body.originalDetectIntentRequest.payload);
                   }
                 }
               };
-              let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
+              // let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
               agent.add(payloadJson);  
             }
           }  
