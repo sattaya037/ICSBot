@@ -46,7 +46,6 @@ console.log('Body: ',req.body.originalDetectIntentRequest.payload);
         let height = req.body.queryResult.parameters.height;
         let BMI = weight/(height/100*height/100) ;  
         agent.add("ํBMI:"+BMI);
-        agent.add("ํBMI:"+BMI);
 
       }
 
@@ -243,7 +242,7 @@ console.log('Body: ',req.body.originalDetectIntentRequest.payload);
                 }
               };
               let payload = new Payload(`LINE`, payloadJson, { sendAsMessage: true });
-              agent.add(payload);  
+              agent.add(sapRespond.d.results[i]);  
             }
           }       
         }else if(wording == "nn"){
